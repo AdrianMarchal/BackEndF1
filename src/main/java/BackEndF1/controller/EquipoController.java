@@ -170,7 +170,6 @@ public class EquipoController {
     final String USERTYPE = "ROOT";
 
     @PostMapping(value = "/add")
-
     @Operation(
             summary = "Agrega un nuevo equipo",
             description = "Este endpoint permite agregar un nuevo equipo a la base de datos. Solo un usuario administrador puede realizar esta acción."
@@ -184,10 +183,19 @@ public class EquipoController {
             return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
         if (!temp.getTipoUser().equals(USERTYPE)) {
-            response.put("mensaje", "Esta operacion solo la puede realizar un administrador");
+            response.put("mensaje", "Esta operación solo la puede realizar un administrador");
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
-        //Aqui genero un id que siempre sera la id mas grande mas 1
+
+        // Verificaciones de los campos obligatorios
+        if (equipo.getNombreCompleto() == null || equipo.getAlias() == null || equipo.getSede() == null ||
+                equipo.getMotor() == null || equipo.getChasis() == null || equipo.getCoche() == null ||
+                equipo.getPiloto1() == null || equipo.getPiloto2() == null || equipo.getBandera() == null) {
+            response.put("mensaje", "Todos los campos obligatorios deben estar completos.");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        // Generar un nuevo ID basado en el más grande existente
         int id = 0;
         ArrayList<Equipo> equipos = equipoRepository.findAllBy();
         for (Equipo e : equipos) {
@@ -200,11 +208,10 @@ public class EquipoController {
         response.put("mensaje", "Equipo creado correctamente");
         response.put("resumen_equipo", equipo);
         return new ResponseEntity<>(response, HttpStatus.OK);
-
     }
 
-    @PutMapping(value = "/update/{id}")
 
+    @PutMapping(value = "/update/{id}")
     @Operation(
             summary = "Actualiza un equipo",
             description = "Este endpoint permite actualizar los detalles de un equipo existente. Solo un usuario administrador puede realizar esta acción."
@@ -235,10 +242,12 @@ public class EquipoController {
         tempEquipo.setSede(equipo.getSede() != null ? equipo.getSede() : tempEquipo.getSede());
         tempEquipo.setMotor(equipo.getMotor() != null ? equipo.getMotor() : tempEquipo.getMotor());
         tempEquipo.setChasis(equipo.getChasis() != null ? equipo.getChasis() : tempEquipo.getChasis());
+        tempEquipo.setCoche(equipo.getCoche() != null ? equipo.getCoche() : tempEquipo.getCoche());
         tempEquipo.setCampeonatosConstructores(equipo.getCampeonatosConstructores() != 0 ? equipo.getCampeonatosConstructores() : tempEquipo.getCampeonatosConstructores());
         tempEquipo.setPiloto1(equipo.getPiloto1() != null ? equipo.getPiloto1() : tempEquipo.getPiloto1());
         tempEquipo.setPiloto2(equipo.getPiloto2() != null ? equipo.getPiloto2() : tempEquipo.getPiloto2());
         tempEquipo.setImg(equipo.getImg() != null ? equipo.getImg() : tempEquipo.getImg());
+        tempEquipo.setBandera(equipo.getBandera() != null ? equipo.getBandera() : tempEquipo.getBandera()); // Aquí se actualiza el campo bandera
 
         equipoRepository.save(tempEquipo);
 
@@ -246,6 +255,8 @@ public class EquipoController {
         response.put("resumen_equipo", tempEquipo);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 
     @DeleteMapping(value = "/delete/{id}")
     @Operation(

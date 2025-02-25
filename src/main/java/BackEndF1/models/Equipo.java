@@ -18,8 +18,10 @@ public class Equipo {
     private String piloto1;
     private String piloto2;
     private String img;
+    private String coche;
+    private String bandera;
 
-    public Equipo(int id, String nombreCompleto, String alias, String sede, String motor, String chasis, int campeonatosConstructores, String piloto1, String piloto2, String img) {
+    public Equipo(int id, String nombreCompleto, String alias, String sede, String motor, String chasis, int campeonatosConstructores, String piloto1, String piloto2, String img, String coche, String bandera) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.alias = alias;
@@ -30,6 +32,8 @@ public class Equipo {
         this.piloto1 = piloto1;
         this.piloto2 = piloto2;
         this.img = img;
+        this.coche = coche;
+        this.bandera = bandera;
     }
 
     public int getId() {
@@ -110,6 +114,22 @@ public class Equipo {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getCoche() {
+        return coche;
+    }
+
+    public void setCoche(String coche) {
+        this.coche = coche;
+    }
+
+    public String getBandera() {
+        return bandera;
+    }
+
+    public void setBandera(String bandera) {
+        this.bandera = bandera;
     }
 
     @Override

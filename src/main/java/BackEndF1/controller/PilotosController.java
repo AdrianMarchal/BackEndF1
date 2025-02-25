@@ -609,7 +609,7 @@ public class PilotosController {
             return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
         if (!temp.getTipoUser().equals(USERTYPE)) {
-            response.put("mensaje", "Esta operacion solo la puede realizar un administrador");
+            response.put("mensaje", "Esta operación solo la puede realizar un administrador");
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
 
@@ -624,7 +624,9 @@ public class PilotosController {
                 piloto.getPodios() < 0 ||
                 piloto.getPoles() < 0 ||
                 piloto.getCampeonatosMundiales() < 0 ||
-                piloto.getEquipoActual() == null || piloto.getEquipoActual().isEmpty()) {
+                piloto.getEquipoActual() == null || piloto.getEquipoActual().isEmpty() ||
+                piloto.getNumeroF1() == 0 ||  // Validación para el campo numeroF1
+                piloto.getBandera() == null || piloto.getBandera().isEmpty()) {  // Validación para el campo bandera
             response.put("mensaje", "Faltan campos obligatorios o contienen valores inválidos");
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
@@ -643,6 +645,7 @@ public class PilotosController {
         response.put("resumen_piloto", piloto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 
     @PutMapping(value = "/update/{id}")
@@ -670,6 +673,7 @@ public class PilotosController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
 
+        // Actualizar los campos del piloto, incluyendo numeroF1 y bandera
         tempPiloto.setNombre(piloto.getNombre() != null ? piloto.getNombre() : tempPiloto.getNombre());
         tempPiloto.setImg(piloto.getImg() != null ? piloto.getImg() : tempPiloto.getImg());
         tempPiloto.setNacionalidad(piloto.getNacionalidad() != null ? piloto.getNacionalidad() : tempPiloto.getNacionalidad());
@@ -681,7 +685,8 @@ public class PilotosController {
         tempPiloto.setPoles(piloto.getPoles() != 0 ? piloto.getPoles() : tempPiloto.getPoles());
         tempPiloto.setCampeonatosMundiales(piloto.getCampeonatosMundiales() != 0 ? piloto.getCampeonatosMundiales() : tempPiloto.getCampeonatosMundiales());
         tempPiloto.setEquipoActual(piloto.getEquipoActual() != null ? piloto.getEquipoActual() : tempPiloto.getEquipoActual());
-
+        tempPiloto.setNumeroF1(piloto.getNumeroF1() != 0 ? piloto.getNumeroF1() : tempPiloto.getNumeroF1());  // Actualizar numeroF1
+        tempPiloto.setBandera(piloto.getBandera() != null ? piloto.getBandera() : tempPiloto.getBandera());  // Actualizar bandera
 
         pilotoRepository.save(tempPiloto);
 
@@ -689,6 +694,7 @@ public class PilotosController {
         response.put("resumen_piloto", tempPiloto);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 
     @DeleteMapping(value = "/delete/{id}")

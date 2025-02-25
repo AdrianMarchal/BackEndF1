@@ -1,12 +1,15 @@
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\BackEndF1Application.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\config\CorsConfig.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\config\SecurityConfig.java
+C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\controller\CircuitoController.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\controller\EquipoController.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\controller\PilotosController.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\controller\UserController.java
+C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\models\Circuitos.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\models\Equipo.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\models\Pilotos.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\models\User.java
+C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\repositories\CircuitoRepositry.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\repositories\EquipoRepository.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\repositories\PilotoRepository.java
 C:\Users\Windows 10\Desktop\BackEndF1\src\main\java\BackEndF1\repositories\UserRepository.java

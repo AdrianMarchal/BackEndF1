@@ -26,8 +26,11 @@ public class Pilotos {
     private int campeonatosMundiales;
     @Field("equipo_actual")
     private String equipoActual;
+    @Field("numero_f1")
+    private int numeroF1;
+    private String bandera;
 
-    public Pilotos(int id, String nombre, String img, String nacionalidad, int edad, String fechaNacimiento, int carreras, int victorias, int podios, int poles, int campeonatosMundiales, String equipoActual) {
+    public Pilotos(int id, String nombre, String img, String nacionalidad, int edad, String fechaNacimiento, int carreras, int victorias, int podios, int poles, int campeonatosMundiales, String equipoActual, int numeroF1, String bandera) {
         this.id = id;
         this.nombre = nombre;
         this.img = img;
@@ -40,6 +43,8 @@ public class Pilotos {
         this.poles = poles;
         this.campeonatosMundiales = campeonatosMundiales;
         this.equipoActual = equipoActual;
+        this.numeroF1 = numeroF1;
+        this.bandera = bandera;
     }
 
     public Pilotos() {}
@@ -138,6 +143,22 @@ public class Pilotos {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getNumeroF1() {
+        return numeroF1;
+    }
+
+    public void setNumeroF1(int numeroF1) {
+        this.numeroF1 = numeroF1;
+    }
+
+    public String getBandera() {
+        return bandera;
+    }
+
+    public void setBandera(String bandera) {
+        this.bandera = bandera;
     }
 
     @Override

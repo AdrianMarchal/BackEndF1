@@ -9,5 +9,8 @@ BackEndF1\controller\UserController.class
 BackEndF1\models\Pilotos.class
 BackEndF1\config\CorsConfig.class
 BackEndF1\controller\PilotosController.class
+BackEndF1\controller\CircuitoController.class
+BackEndF1\models\Circuitos.class
+BackEndF1\repositories\CircuitoRepositry.class
 BackEndF1\controller\EquipoController.class
 BackEndF1\repositories\PilotoRepository.class
